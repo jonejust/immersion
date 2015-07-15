@@ -1,5 +1,6 @@
 import webapp2
 import base_page
+import main
 import db_defs
 from google.appengine.ext import ndb
 from google.appengine.ext import blobstore
