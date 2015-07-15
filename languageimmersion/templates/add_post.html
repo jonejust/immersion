@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <title>Add a Post</title>
+</head>
+<body>
+  <h2>Add a Post</h2>
+  <a href="/">Back to Main Page</a>
+  <p>Add a post, go back to the main page with the link above, or click on a post from the list below to edit.</p>
+  <form action="{{ upload_url }}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="action" value="add_post">
+    <fieldset>
+      <legend>User Name</legend>
+      <input type="text" name="username" required>
+    </fieldset>
+    <fieldset>
+      <legend>Email of Poster</legend>
+      <input type="email" name="user_email" required>
+    </fieldset>
+    <fieldset>
+      <legend>Subject</legend>
+      <input type="text" name="subject" required>
+    </fieldset>
+    <fieldset>
+      <legend>Message</legend>
+      <textarea name="message" rows=10 cols="60" required></textarea>
+    </fieldset>  
+    <fieldset>
+      <legend>City</legend>
+      <input type="text" name="city" required>
+    </fieldset>
+    <fieldset>
+      <legend>State</legend>
+      <input type="text" name="state" required>
+    </fieldset>
+    <fieldset>
+      <legend>Zipcode</legend>
+      <input type="number" name="zipcode" required>
+    </fieldset>
+    <br>
+    <label>Upload User Image: </label><input type="file" name="icon">
+    {% if languages | length > 0 %}  
+    <fieldset>
+      <legend>Languages to apply to Post</legend>
+        {% for l in languages %}
+        <label> {{ l.language }} </label>
+        <input type="checkbox" name="languages[]" value="{{ l.key }}">
+        {% endfor %}
+    </fieldset>
+    {% endif %}
+    <fieldset>
+      <label>Urgent Post?: </label>
+      <br>
+      <label>Urgent </label>
+      <input type="radio" name="importance" value="Urgent">
+      <label>Low Priority </label>
+      <input type="radio" name="importance" value="Low Priority">
+    </fieldset>
+    <input type="submit" value="Add Post"> 
+  </form>
+  <br>
+  <h2>Add Language Category</h2>
+  <form action="/add_language" method="post">
+      <input type="hidden" name="action" value="add_language">
+      <legend>Language Name</legend>
+        <fieldset>
+          <input type="text" name="language">
+          <input type="Submit" value="Add Language">
+        </fieldset>
+  </form>
+  {% if languages | length > 0 %}
+    <section>
+        <h2>Choose a Post to Edit Below<h2>
+          {% for p in posts %}
+          <a href='/edit?key={{ p.key }}&type=post'>{{ p.subject }}</a>
+          <br>
+          {% endfor %}
+    </section>
+    {% endif %}
+    {% if confirmation_message %}
+    <section>
+      <h3>Result</h3>
+      <p>{{ confirmation_message }}
+    </section>
+    {% endif %}     
+</body>
+</html>

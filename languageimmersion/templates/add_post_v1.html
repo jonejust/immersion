@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <title>Add a Post</title>
+</head>
+<body>
+  <h1>ADD A POST</h1>
+  <form action="/" method="post">
+    <fieldset>
+      <legend>Email of Poster</legend>
+      <input type="email" name="user-email">
+    </fieldset>
+    <fieldset>
+      <legend>Subject</legend>
+      <input type="text" name="subject">
+    </fieldset>
+        <fieldset>
+      <legend>Message</legend>
+      <textarea name="message" rows=10 cols="60"></textarea>
+    </fieldset>
+    <fieldset>
+      <input type="checkbox" name="Spanish" value="Spanish">
+      <input type="checkbox" name="French" value="French">
+      <input type="checkbox" name="German" value="German">
+      <input type="checkbox" name="Italian" value="Italian">
+      <input type="checkbox" name="Mandarin" value="Mandarin">
+    </fieldset>
+    </fieldset>
+    <fieldset>
+      <legend>Submit Post</legend>
+      <input type="submit" value="Post">
+    </fieldset>
+  </form>
+  {% if form_content %}
+    <section>
+        <dl>
+          {% for key, value in form_content.iteritems() %}
+            <dt>{{ key|e }}</dt>
+            <dd>{{ value|e }}</dd>
+          {% endfor %}
+        </dl>
+    </section>
+  {% endif %}
+  <p>The email you will post under is: {{ post_email }}</p>
+  <p>The language this post will be filed under is: {{ post_language }}</p>
+</body>
+</html>  
+

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Language Tags</title>
+</head>
+  <body>
+    <h1>Language Tag List</h1>
+    <p><a href='/'>Back to Main Page</a></p>
+    <p>Click on a language to delete it from the language list.</p>
+    <section>
+      {% for l in languages %}
+      <p><a href='/delete/language?key={{ l.key }}&type=language'>{{ l.language }}</a></p>
+      {% endfor %}
+    </section>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+  <h1>Welcome to the International Languages Discussion Board</h1>
+  <p>Click on a post to view or add/edit a post by clicking <a href="/add_post">here.</a></p>
+  <p>Once you click on a post, it is view only; however, there will be a link to another page to edit the post there as well.</p>
+  <br>
+  <section>
+    {% for p in posts %}
+      <a href='/view?key={{ p.key }}&type=post'>{{ p.subject }}</a>
+      <br>
+    {% endfor %}
+  </section>
+</body>
+</html>

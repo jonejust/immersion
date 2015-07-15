@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf=8'>
+  <title>View Post Page</title>
+</head>
+<body>
+  <h1>International Language Discussion Board</h1>
+  <p><a href="/">Back to List of All Posts</a></p>
+  <p><a href='/edit?key={{ key }}&type=post'>Edit Post</a></p>
+  <p><a href='/delete/post?key={{ key }}&type=post'>Delete Post</a></p>
+  <p><a href="/add_post">Add Post</a></p>
+  <br>
+  <h2><u>Subject</u>: {{ subject }}</h2>
+  <table>
+    <tr>
+      <td><u>Username</u>: {{ username }}</td>
+      <td><u>User Email</u>: {{ user_email }}</td>
+      <td>
+      {% if img_url %}
+      <img src="{{ img_url }}">
+      {% endif %}
+      </td>
+    </tr>
+    <tr>
+        <td><u>Location</u>: {{ city }}, {{ state}}  {{zipcode}}</td>
+    </tr>
+    <tr>
+      <td><u>Message</u>: {{ message }} </td>
+    </tr>
+    <tr>
+      <td><u>Urgent?</u>: {{ importance }}</td>
+      <td>
+      {% if languages %}
+      <label><u>Language tag(s)</u> </label>
+      {% for l in languages %}
+      : {{ l.language }} 
+      {% endfor %}
+      {% endif %}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
